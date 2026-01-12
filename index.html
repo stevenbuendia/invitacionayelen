@@ -135,77 +135,91 @@ body{
 </div>
 
 <script>
-function openEnvelope(){
+document.addEventListener("DOMContentLoaded", () => {
+
+    let jokeStep = 0;
+
+    const btnSi = document.getElementById("btn-si");
+    const msg = document.getElementById("msg");
+    const zone = document.getElementById("btn-zone");
     const wrapper = document.getElementById("wrapper");
-    wrapper.classList.add("opened");
+    const invitation = document.getElementById("invitation");
 
-    setTimeout(() => {
-        document.getElementById("invitation").classList.remove("hidden");
-    }, 700);
-}
-let jokeStep = 0;
+    const mensajes = [
+        "¿Que asi nomas? JAAAA",
+        "Otra vez?",
+        "Es por las puras Mojonlen 😂",
+        "AJAJJAJAJ 😂",
+        "poto sucio",
+        "chibola pulpin",
+        "mazeta",
+        "hulk",
+        "oño",
+        "mojon",
+        "raja negra",
+        "loquita",
+        "yaaa, me rindo, te amo ❤️"
+    ];
 
-const btnSi = document.getElementById("btn-si");
-const msg = document.getElementById("msg");
-const zone = document.getElementById("btn-zone");
+    function openEnvelope() {
+        if (wrapper.classList.contains("opened")) return;
 
-const mensajes = [
-  "¿Que asi nomas? JAAAA",
-  "Otra vez?",
-  "Es por las puras Mojonlen 😂",
-  "AJAJJAJAJ 😂",
-  "poto sucio",
-  "chibola pulpin",
-  "mazeta",
-  "hulk",
-  "oño",
-  "mojon",
-  "raja negra",
-  "loquita",
-  "yaaa, me rindo, te amo ❤️"
-];
+        wrapper.classList.add("opened");
 
-btnSi.addEventListener("click", () => {
-    if (jokeStep < 13) {
-        moverBoton();
-        msg.innerText = mensajes[jokeStep];
-        jokeStep++;
-    } else {
-        mostrarFinal();
+        setTimeout(() => {
+            invitation.classList.remove("hidden");
+        }, 700);
     }
+
+    // PC + MÓVIL
+    wrapper.addEventListener("click", openEnvelope);
+    wrapper.addEventListener("touchstart", openEnvelope, { passive: true });
+
+    btnSi.addEventListener("click", () => {
+        if (jokeStep < mensajes.length - 1) {
+            moverBoton();
+            msg.innerText = mensajes[jokeStep];
+            jokeStep++;
+        } else {
+            mostrarFinal();
+        }
+    });
+
+    function moverBoton() {
+        const maxX = zone.offsetWidth - btnSi.offsetWidth;
+        const maxY = zone.offsetHeight - btnSi.offsetHeight;
+
+        const x = Math.random() * maxX;
+        const y = Math.random() * maxY;
+
+        btnSi.style.position = "absolute";
+        btnSi.style.left = x + "px";
+        btnSi.style.top = y + "px";
+    }
+
+    // Para que funcione el botón "No"
+    window.triggerJoke = function () {
+        alert("Esta opción fue eliminada por exceso de amor oño 😌");
+    };
+
+    function mostrarFinal() {
+        document.body.innerHTML = `
+            <div class="flex flex-col justify-center items-center h-screen text-center p-6">
+                <h1 class="text-4xl mb-4">💖</h1>
+                <h2 class="text-2xl font-bold text-red-500">¡Confirmado!</h2>
+                <p class="mt-4 text-gray-700">
+                    Gracias por aguantar mis bromas, Ayecita ❤️
+                    <br>
+                    Nos vemos este domingo mi amor.
+                </p>
+            </div>
+        `;
+    }
+
 });
-
-function moverBoton() {
-    const maxX = zone.offsetWidth - btnSi.offsetWidth;
-    const maxY = zone.offsetHeight - btnSi.offsetHeight;
-
-    const x = Math.random() * maxX;
-    const y = Math.random() * maxY;
-
-    btnSi.style.position = "absolute";
-    btnSi.style.left = x + "px";
-    btnSi.style.top = y + "px";
-}
-
-function triggerJoke() {
-    alert("Esta opción fue eliminada por exceso de amor oño");
-}
-
-function mostrarFinal() {
-    document.body.innerHTML = `
-        <div class="flex flex-col justify-center items-center h-screen text-center p-6">
-            <h1 class="text-4xl mb-4">💖</h1>
-            <h2 class="text-2xl font-bold text-red-500">¡Confirmado!</h2>
-            <p class="mt-4 text-gray-700">
-                Gracias por aguantar mis bromas, Ayecita ❤️
-                <br>  
-                Nos vemos este domingo mi amor.
-            </p>
-        </div>
-    `;
-}
 </script>
 
 </body>
 </html>
+
 

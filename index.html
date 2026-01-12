@@ -155,18 +155,18 @@ const mensajes = [
   "Es por las puras Mojonlen 😂",
   "AJAJJAJAJ 😂",
   "poto sucio",
-    "chibola pulpin",
-    "mazeta",
-    "hulk",
-    "oño",
-    "mojon",
-    "raja negra",
-    "loquita",
+  "chibola pulpin",
+  "mazeta",
+  "hulk",
+  "oño",
+  "mojon",
+  "raja negra",
+  "loquita",
   "yaaa, me rindo, te amo ❤️"
 ];
 
 btnSi.addEventListener("click", () => {
-    if (jokeStep < 4) {
+    if (jokeStep < 13) {
         moverBoton();
         msg.innerText = mensajes[jokeStep];
         jokeStep++;
@@ -197,7 +197,8 @@ function mostrarFinal() {
             <h1 class="text-4xl mb-4">💖</h1>
             <h2 class="text-2xl font-bold text-red-500">¡Confirmado!</h2>
             <p class="mt-4 text-gray-700">
-                Gracias por aguantar mis bromas, Ayecita ❤️  
+                Gracias por aguantar mis bromas, Ayecita ❤️
+                <br>  
                 Nos vemos este domingo mi amor.
             </p>
         </div>
@@ -207,5 +208,4 @@ function mostrarFinal() {
 
 </body>
 </html>
-
 

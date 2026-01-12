@@ -135,6 +135,14 @@ body{
 </div>
 
 <script>
+function openEnvelope(){
+    const wrapper = document.getElementById("wrapper");
+    wrapper.classList.add("opened");
+
+    setTimeout(() => {
+        document.getElementById("invitation").classList.remove("hidden");
+    }, 700);
+}
 let jokeStep = 0;
 
 const btnSi = document.getElementById("btn-si");
@@ -199,4 +207,5 @@ function mostrarFinal() {
 
 </body>
 </html>
+
 
